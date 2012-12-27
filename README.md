@@ -32,7 +32,7 @@ This may not seem useful unless you manage workstations/laptops with puppet.  ;-
 
 ## Support, Feedback, Comments
 
-I'm happy to answer any questions.
+I'm happy to answer any questions and accept any constructive critisim.  :-)
 
 Ways to contact me:
 * [Assign an issue to me](http://github.com/neoCrimeLabs/hiera_openvpn/issues/new)
@@ -40,6 +40,6 @@ Ways to contact me:
 * Freenode #puppet as tinfoil
 * [Find me on Twitter](https://twitter.com/neoCrimeLabs)
 
-Keep in mind:  This is a proof of concept module, and I'm a puppet newb at the time of writing it.  It's bound to have issues and not be perfect.  
-
-
+Keep in mind:
+* This is a proof of concept module and is not meant to be general purpose out of the box.
+* I'm a puppet newb at the time of writing it.  It's bound to have issues and not be perfect.  
