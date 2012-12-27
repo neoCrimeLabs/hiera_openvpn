@@ -1,4 +1,6 @@
-
+<% ports.each do |key,val| -%>
+remote <%= ip %> <%= val["port"] == "" ? defaults["port"] : val["port"] %> <%= val["proto"] == "" ? defaults["proto"] : val["proto"] %>
+<% end #ports each -%>
 auth RSA-SHA
 ca /var/lib/puppet/ssl/certs/ca.pem
 cert /var/lib/puppet/ssl/certs/<%= fqdn.downcase %>.pem
@@ -6,20 +8,20 @@ cipher AES-256-CBC
 client
 comp-lzo
 dev tun
-fast-io
+group nogroup
 keepalive 1 10
 key /var/lib/puppet/ssl/private_keys/<%= fqdn.downcase %>.pem
-log-append /var/log/openvpn/client-<%= title %>.log
+log-append /var/log/openvpn/client-<%= ip %>.log
 nobind
 persist-key
 persist-tun
 remote-cert-eku "TLS Web Server Authentication"
-remote <%= ip %> <%= port %> <%= proto %>
 script-security 1
 socket-flags TCP_NODELAY
-status /var/log/openvpn/client-<%= title %>.status 1
+status /var/log/openvpn/client-<%= ip %>.status 1
 status-version 1
 tls-auth /etc/openvpn/puppet-keys/ta.key 1
 tls-cipher DHE-RSA-AES256-SHA
+user nobody
 topology subnet
 verb 4

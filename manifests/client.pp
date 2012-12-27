@@ -1,7 +1,7 @@
 define openvpn::client(
 	$ip="",
-	$port="1194",
-	$proto="udp"
+	$ports = {},
+        $defaults = {}
 ) {
 	if $ip {
 		file { "openvpn-client-${title}":

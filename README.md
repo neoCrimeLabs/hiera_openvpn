@@ -10,14 +10,13 @@ This may not seem useful unless you manage workstations/laptops with puppet or w
 
 ## Known Limitations
 
-* This is focused on Ubuntu 12.04.  It should work on most Linux distributions, though you may need to supply the openvpn package (redhat)
-* Currently you have to roll TLS-Auth key and DH-Params by hand (see script in files)
+* This is focused on Ubuntu 12.04.  It should work on most Linux distributions, though you may need to supply the openvpn package
+* Currently you have to roll TLS-Auth key and DH-Params by hand
 * This module does not push routes, handle further authentication, or update dns
 * And more...
 
 ## Known Todo
 
-* Support multiple ports per server, but single client config (ie, UDP w/ TCP fallback)
 * Roll keys with puppet - There are multiple ways to do this, but I haven't decided which I like yet.
 
 ## How to use
@@ -37,7 +36,6 @@ I'm happy to answer any questions and accept any constructive critisim.  :-)
 Ways to contact me:
 * [Assign an issue to me](http://github.com/neoCrimeLabs/hiera_openvpn/issues/new)
 * irc.mozilla.org as tinfoil
-* Freenode #puppet as tinfoil
 * [Find me on Twitter](https://twitter.com/neoCrimeLabs)
 
 Keep in mind:
