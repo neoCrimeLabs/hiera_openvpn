@@ -2,20 +2,23 @@ class openvpn () {
 	$openvpn = hiera("openvpn")
 
 	if $openvpn {
-		user { "openvpn":
-			ensure => present,
-			system => true,
-		}
-
 		group { "openvpn":
 			system => true,
 			ensure => present,
-			require => User["openvpn"],
+		}
+
+		user { "openvpn":
+			ensure => present,
+			gid => "openvpn",
+			shell => "/bin/false",
+			home => "/etc/openvpn",
+			system => true,
+			require => Group["openvpn"],
 		}
 
 		package { "openvpn":
 			ensure => present,
-			require => Group["openvpn"],
+			require => User["openvpn"],
 		}
 
 		file { "openvpn":
