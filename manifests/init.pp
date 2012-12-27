@@ -2,7 +2,21 @@ class openvpn () {
 	$openvpn = hiera("openvpn")
 
 	if $openvpn {
-		package { "openvpn": ensure => present; }
+		user { "openvpn":
+			ensure => present,
+			system => true,
+		}
+
+		group { "openvpn":
+			system => true,
+			ensure => present,
+			require => User["openvpn"],
+		}
+
+		package { "openvpn":
+			ensure => present,
+			require => Group["openvpn"],
+		}
 
 		file { "openvpn":
 			ensure => directory,
@@ -48,7 +62,7 @@ class openvpn () {
 			hasstatus  => true,
 			hasrestart => true,
 			enable     => true,
-			require    => File["openvpn-tlsauth-key"]
+			require    => File["openvpn-tlsauth-key"],
 		}
 
     		create_resources(openvpn::config, $openvpn)

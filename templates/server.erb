@@ -5,31 +5,37 @@ socket-flags TCP_NODELAY
 port-share <%= port_share %>
 <% end # port_share -%>
 <% end # proto tcp -%>
-status /var/log/openvpn/server-<%= ip %>-<%= port %>-<%= proto %>.status 1
-auth RSA-SHA
-ca /var/lib/puppet/ssl/certs/ca.pem
-cert /var/lib/puppet/ssl/certs/<%= fqdn.downcase %>.pem
-cipher AES-256-CBC
-client-to-client
-comp-lzo
-daemon
-dev tun
-dh /etc/openvpn/puppet-keys/dh2048.pem
-group nogroup
-keepalive 1 10
-key /var/lib/puppet/ssl/private_keys/<%= fqdn.downcase %>.pem
 local <%= ip %>
-log-append /var/log/openvpn/server-<%= ip %>-<%= port %>-<%= proto %>.log
-max-clients 100
-persist-key
-persist-tun
 port <%= port %>
 proto <%= proto %>
-remote-cert-eku "TLS Web Client Authentication"
-script-security 1
-status-version 1
+
+ca /var/lib/puppet/ssl/certs/ca.pem
+cert /var/lib/puppet/ssl/certs/<%= fqdn.downcase %>.pem
+dh /etc/openvpn/puppet-keys/dh2048.pem
+key /var/lib/puppet/ssl/private_keys/<%= fqdn.downcase %>.pem
 tls-auth /etc/openvpn/puppet-keys/ta.key 0
+
+auth RSA-SHA
+cipher AES-256-CBC
 tls-cipher DHE-RSA-AES256-SHA
-topology subnet
-user nobody
+remote-cert-eku "TLS Web Client Authentication"
+
+log-append /var/log/openvpn/server-<%= ip %>-<%= port %>-<%= proto %>.log
+status /var/log/openvpn/server-<%= ip %>-<%= port %>-<%= proto %>.status 1
+status-version 1
 verb 4
+
+group openvpn
+user openvpn
+daemon
+script-security 1
+
+client-to-client
+max-clients 100
+topology subnet
+
+keepalive 1 10
+dev tun
+comp-lzo
+persist-key
+persist-tun
