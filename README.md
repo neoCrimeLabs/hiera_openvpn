@@ -35,10 +35,10 @@ This may not seem useful unless you manage workstations/laptops with puppet.  ;-
 I'm happy to answer any questions.
 
 Ways to contact me:
-* Issue me a bug here
+* [Assign an issue to me](http://github.com/neoCrimeLabs/hiera_openvpn/issues/new)
 * irc.mozilla.org as tinfoil
 * Freenode #puppet as tinfoil
-* https://twitter.com/neoCrimeLabs
+* [Find me on Twitter](https://twitter.com/neoCrimeLabs)
 
 Keep in mind:  This is a proof of concept module, and I'm a puppet newb at the time of writing it.  It's bound to have issues and not be perfect.  
 
