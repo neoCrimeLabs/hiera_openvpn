@@ -1,0 +1,7 @@
+openvpn:
+ neocrime.net:  # FQDN of the openvpn server
+  ip: "123.45.67.89"  # The IP address you want clients to connect to, currently doesn't take DNS
+  port: "1194"
+  proto: "udp"
+  subnet: "192.168.255.0" # subnet assigned to the VPN - must be unique to the $ip-$port-$proto 
+  mask: "255.255.255.0"

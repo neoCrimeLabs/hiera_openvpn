@@ -1,0 +1,31 @@
+auth RSA-SHA
+ca /var/lib/puppet/ssl/certs/ca.pem
+cert /var/lib/puppet/ssl/certs/<%= fqdn.downcase %>.pem
+cipher AES-256-CBC
+client-to-client
+comp-lzo
+daemon
+dev tun
+dh /etc/openvpn/puppet-keys/dh2048.pem
+fast-io
+group nogroup
+keepalive 1 10
+key /var/lib/puppet/ssl/private_keys/<%= fqdn.downcase %>.pem
+local <%= ip %>
+log-append /var/log/openvpn/server-<%= title %>.log
+max-clients 100
+persist-key
+persist-tun
+port <%= port %>
+proto <%= proto %>
+remote-cert-eku "TLS Web Client Authentication"
+script-security 1
+server <%= subnet %> <%= mask %>
+socket-flags TCP_NODELAY
+status /var/log/openvpn/server-<%= title %>.status 1
+status-version 1
+tls-auth /etc/openvpn/puppet-keys/ta.key 0
+tls-cipher DHE-RSA-AES256-SHA
+topology subnet
+user nobody
+verb 4

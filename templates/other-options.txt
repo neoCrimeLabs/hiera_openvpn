@@ -1,0 +1,16 @@
+Server
+client-to-client
+topology subnet
+keepalive 1 10
+persist-tun
+script-security 
+status [file] [seconds]
+status-version [1,2,3]
+crl-verify
+
+openssl dhparam -out dh1024.pem 1024
+
+Client
+server-poll-timeout [sec]
+mute-replay-warnings
+~                     
