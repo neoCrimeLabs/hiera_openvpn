@@ -27,7 +27,8 @@ This may not seem useful unless you manage workstations/laptops with puppet.  ;-
 * Add "include openvpn" to any hosts you want to join in the fun
  * Servers will automatically figure out if they are a server or not
  * All hosts will get client configs for all servers
- * User hiera for restricting VPN's to groups of servers (config data doesn't need to be in common.yaml)
+ * Servers do NOT get their own config, but they get configs for other servers
+ * User hiera for restricting VPN's to groups of servers (hint: config data doesn't need to be in common.yaml)
 
 ## Support, Feedback, Comments
 
