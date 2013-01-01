@@ -4,7 +4,7 @@ client
 remote <%= ip %> <%= val["port"] == "" ? defaults["port"] : val["port"] %> <%= val["proto"] == "" ? defaults["proto"] : val["proto"] %>
 <% end #ports each -%>
 
-tls-remote <%= hostname %>
+tls-remote <%= defaults["hostname"] %>
 ca <%= scope.lookupvar('settings::ssldir') %>/certs/ca.pem
 cert <%= scope.lookupvar('settings::ssldir') %>/certs/<%= fqdn.downcase %>.pem
 key <%= scope.lookupvar('settings::ssldir') %>/private_keys/<%= fqdn.downcase %>.pem

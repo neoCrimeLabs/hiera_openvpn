@@ -60,6 +60,23 @@ class openvpn () {
 			notify => Service["openvpn"],
         	}
 
+		file { "var-puppet":
+			ensure => directory,
+			path => "/var/puppet",
+			owner => puppet,
+			group => puppet,
+			mode => 751
+		}
+
+		file { "var-puppet-ssl":
+			ensure => directory,
+			path => "/var/puppet/ssl",
+			owner => puppet,
+			group => puppet,
+			mode => 751,
+			require => File["var-puppet"]
+		}
+			
 		service { "openvpn":
 			ensure     => running,
 			hasstatus  => true,
@@ -67,6 +84,7 @@ class openvpn () {
 			enable     => true,
 			require    => File["openvpn-tlsauth-key"],
 		}
+
 
     		create_resources(openvpn::config, $openvpn)
   	}
