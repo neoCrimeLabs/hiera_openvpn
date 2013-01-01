@@ -4,9 +4,10 @@ client
 remote <%= ip %> <%= val["port"] == "" ? defaults["port"] : val["port"] %> <%= val["proto"] == "" ? defaults["proto"] : val["proto"] %>
 <% end #ports each -%>
 
-ca /var/lib/puppet/ssl/certs/ca.pem
-cert /var/lib/puppet/ssl/certs/<%= fqdn.downcase %>.pem
-key /var/lib/puppet/ssl/private_keys/<%= fqdn.downcase %>.pem
+ca <%= scope.lookupvar('settings::ssldir') %>/certs/ca.pem
+cert <%= scope.lookupvar('settings::ssldir') %>/certs/<%= fqdn.downcase %>.pem
+key <%= scope.lookupvar('settings::ssldir') %>/private_keys/<%= fqdn.downcase %>.pem
+crl-verify <%= scope.lookupvar('settings::ssldir') %>/crl.pem
 tls-auth /etc/openvpn/puppet-keys/ta.key 1
 
 cipher AES-256-CBC
@@ -17,12 +18,12 @@ remote-cert-eku "TLS Web Server Authentication"
 log-append /var/log/openvpn/client-<%= ip %>.log
 status /var/log/openvpn/client-<%= ip %>.status 1
 status-version 1
-verb 4
+verb 2
 
-user openvpn
-group openvpn
-persist-key
-persist-tun
+#user openvpn
+#group openvpn
+#persist-key
+#persist-tun
 script-security 1
 daemon
 

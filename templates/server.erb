@@ -9,11 +9,12 @@ local <%= ip %>
 port <%= port %>
 proto <%= proto %>
 
-ca /var/lib/puppet/ssl/certs/ca.pem
-cert /var/lib/puppet/ssl/certs/<%= fqdn.downcase %>.pem
-dh /etc/openvpn/puppet-keys/dh2048.pem
-key /var/lib/puppet/ssl/private_keys/<%= fqdn.downcase %>.pem
+ca <%= scope.lookupvar('settings::ssldir') %>/certs/ca.pem
+cert <%= scope.lookupvar('settings::ssldir') %>/certs/<%= fqdn.downcase %>.pem
+key <%= scope.lookupvar('settings::ssldir') %>/private_keys/<%= fqdn.downcase %>.pem
+crl-verify <%= scope.lookupvar('settings::ssldir') %>/crl.pem
 tls-auth /etc/openvpn/puppet-keys/ta.key 0
+dh /etc/openvpn/puppet-keys/dh2048.pem
 
 auth RSA-SHA
 cipher AES-256-CBC
@@ -23,7 +24,7 @@ remote-cert-eku "TLS Web Client Authentication"
 log-append /var/log/openvpn/server-<%= ip %>-<%= port %>-<%= proto %>.log
 status /var/log/openvpn/server-<%= ip %>-<%= port %>-<%= proto %>.status 1
 status-version 1
-verb 4
+verb 2
 
 group openvpn
 user openvpn
