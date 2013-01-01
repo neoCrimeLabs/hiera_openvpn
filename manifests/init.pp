@@ -73,7 +73,7 @@ class openvpn () {
 			path => "/var/lib/puppet/ssl",
 			owner => puppet,
 			group => puppet,
-			mode => 751,
+			mode => 771,
 			require => File["var-lib-puppet"]
 		}
 			
