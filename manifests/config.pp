@@ -1,12 +1,12 @@
 define openvpn::config (
-	$hostname = $title,
+	$vpnserver = $title,
 	$ip,
 	$ports = {}
 ) {
 	if $ip {
 		$defaults = {
 			ip => $ip,
-			hostname => $hostname,
+			vpnserver => $vpnserver,
 			subnet => "",
 			mask => "255.255.255.0",
 			port => "1194",
@@ -14,7 +14,7 @@ define openvpn::config (
 			port_share => ""
 		}
 			
-		if $hostname == $fqdn {
+		if $vpnserver == $fqdn {
 			# The DH key can be public, and takes a long time to roll
 			# Rolling the DH key once on puppetmaster for now
         		file { "openvpn-dh-key":
@@ -34,12 +34,11 @@ define openvpn::config (
 		} else {
 			# We can use one client config per server, however :-)
 			openvpn::client{ "${ip}":
-				ip => $ip,
 				ports => $ports,
 				defaults => $defaults
 			}
 		}
 	} else {
-		notify{"Cannot create openvpn for ${hostname}, external ip not specified":}
+		notify{"Cannot create openvpn for ${vpnserver}, external ip not specified":}
 	}
 }

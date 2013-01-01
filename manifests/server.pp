@@ -1,5 +1,5 @@
 define openvpn::server(
-	$hostname = "",
+	$vpnserver = "",
 	$port="1194",
 	$ip="",
 	$subnet="",
@@ -24,6 +24,6 @@ define openvpn::server(
 		}
 
 	} else {
-		notify { "openvpn::server ${hostname} ${title} cannot be configured without private subnet address.": }
+		notify { "openvpn::server ${vpnserver} ${title} cannot be configured without private subnet address.": }
 	}
 }

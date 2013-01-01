@@ -62,18 +62,18 @@ class openvpn () {
 
 		file { "var-lib-puppet":
 			ensure => directory,
-			path => "/var/lib/puppet",
+			path => $setting::vardir,
 			owner => puppet,
 			group => puppet,
-			mode => 751
+			mode => 751 # default mode is 750 - adding o+x to allow traversal without reading
 		}
 
 		file { "var-lib-puppet-ssl":
 			ensure => directory,
-			path => "/var/lib/puppet/ssl",
+			path => $setting::ssldir,
 			owner => puppet,
 			group => puppet,
-			mode => 771,
+			mode => 771,  # default mode is 770 - adding o+x to allow traversal without reading
 			require => File["var-lib-puppet"]
 		}
 			
