@@ -60,21 +60,21 @@ class openvpn () {
 			notify => Service["openvpn"],
         	}
 
-		file { "var-puppet":
+		file { "var-lib-puppet":
 			ensure => directory,
-			path => "/var/puppet",
+			path => "/var/lib/puppet",
 			owner => puppet,
 			group => puppet,
 			mode => 751
 		}
 
-		file { "var-puppet-ssl":
+		file { "var-lib-puppet-ssl":
 			ensure => directory,
-			path => "/var/puppet/ssl",
+			path => "/var/lib/puppet/ssl",
 			owner => puppet,
 			group => puppet,
 			mode => 751,
-			require => File["var-puppet"]
+			require => File["var-lib-puppet"]
 		}
 			
 		service { "openvpn":
