@@ -11,7 +11,7 @@ This may not seem useful unless you manage workstations/laptops with puppet or w
 ## Known Limitations
 
 * This is focused on Ubuntu 12.04.  It should work on most Linux distributions, though you may need to supply the openvpn package
-* Currently you have to roll TLS-Auth key and DH-Params by hand
+* Currently you have to roll TLS-Auth key and DH-Params by hand (see files/make_keys.sh)
 * This module does not push routes, handle further authentication, or update dns
 * And more...
 
