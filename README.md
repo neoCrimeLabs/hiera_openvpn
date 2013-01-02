@@ -17,7 +17,7 @@ This may not seem useful unless you manage workstations/laptops with puppet or w
 
 ## Known Todo
 
-* Roll keys with puppet - There are multiple ways to do this, but I haven't decided which I like yet.
+* Roll TLS-Auth key and DH-Params automatically; There are multiple ways to do this, but I haven't decided which I like yet.
 
 ## How to use
 
